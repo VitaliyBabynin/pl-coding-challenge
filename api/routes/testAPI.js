@@ -27,7 +27,11 @@ const checkpoints = CSVtoJSON('checkpoints.csv');
 const trackings = CSVtoJSON('trackings.csv');
 
 router.get('/', function (req, res, next) {
-    res.send('API is working properly');
+    res.send({
+        apiResponse: 'API is working properly',
+        checkpoints: checkpoints,
+        trackings: trackings
+    });
 });
 
 module.exports = router;
