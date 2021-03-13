@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+} from "react-router-dom";
 
 
 const App = () => {
@@ -22,24 +28,33 @@ const App = () => {
     console.log(data);
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-            <p>{data.apiResponse}</p>
-        </div>
+        <Router>
+                <div className="App">
+                    <header className="App-header">
+                        <img src={logo} className="App-logo" alt="logo"/>
+                        <Link to={'/1'}>Page 1</Link>
+                        <Link to={'/2'}>Page 2</Link>
+                        <Link to={'/3'}>Page 3</Link>
+                    </header>
+                    <Switch>
+                        <Route path={'/1'}>
+                            <p>{data.apiResponse}</p>
+                        </Route>
+                        <Route path={'/2'}>
+                            <div>
+                                <pre>{JSON.stringify(data.checkpoints.data, null, 2)}</pre>
+                            </div>
+                        </Route>
+                        <Route path={'/3'}>
+                            <div>
+                                <pre>{JSON.stringify(data.trackings.data, null, 2)}</pre>
+                            </div>
+                        </Route>
+                    </Switch>
+                </div>
+        </Router>
     );
+
 };
 
 export default App;
