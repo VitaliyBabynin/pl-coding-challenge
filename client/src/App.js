@@ -8,20 +8,6 @@ import {
     Route,
     Link,
 } from "react-router-dom";
-import {
-    Button,
-    Card,
-    CardBody,
-    CardGroup,
-    Col,
-    Container,
-    Input,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupText,
-    Row,
-    NavLink
-} from 'reactstrap';
 
 import EnterEmail from './pages/EnterEmail';
 import YourOrders from './pages/YourOrders';

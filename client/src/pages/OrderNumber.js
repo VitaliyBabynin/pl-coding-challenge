@@ -36,9 +36,6 @@ const OrderNumber = (props) => {
         return deliveryStatusTemp;
     }
 
-    console.log(orders);
-    console.log(deliveryStatus);
-
     return (
         <div className={'order-number'}>
             <div className={'order-number-row'}>
@@ -100,7 +97,7 @@ const OrderNumber = (props) => {
                                         </div>
                                         <div className={'image order-number-column'}>
                                             {order.articleImageUrl ?
-                                                <img src={order.articleImageUrl} alt={'product image'}></img>
+                                                <img src={order.articleImageUrl} alt={'product'}></img>
                                                 : ''}
                                         </div>
                                         <div className={'details order-number-column'}>
