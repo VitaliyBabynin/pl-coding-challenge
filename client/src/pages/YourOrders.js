@@ -1,28 +1,12 @@
 import React from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link, useHistory,
-} from "react-router-dom";
-import {
-    Button,
-    Card,
-    CardBody,
-    CardGroup,
-    Col,
-    Container,
-    Input,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupText,
-    Row,
-    NavLink
-} from 'reactstrap';
+import {useHistory} from "react-router-dom";
+import {Button} from 'reactstrap';
 
 const YourOrders = (props) => {
     const trackingsData = props.apiData.trackings.data ? props.apiData.trackings.data : false;
     const checkpointsData = props.apiData.checkpoints.data ? props.apiData.checkpoints.data : false;
+    const email = props.email ? props.email : '';
+
     const history = useHistory();
 
     let orders = [];
@@ -30,23 +14,22 @@ const YourOrders = (props) => {
     getOrderStatuses();
 
     function getOrdersThatMatchEmail() {
-        if (!trackingsData) return false;
+        if (!trackingsData) return;
 
-        for (var i = 0; i < trackingsData.length; i++) {
-            if (trackingsData[i].email === 'julian@parcellab.com') {
+        for (let i = 0; i < trackingsData.length; i++) {
+            if (trackingsData[i].email === email) {
                 orders.push(trackingsData[i]);
             }
         }
-
-        return false;
     }
 
     function getOrderStatuses() {
-        if (!trackingsData) return false;
-        if (!checkpointsData) return false;
+        if (!trackingsData) return;
+        if (!checkpointsData) return;
+        if (orders.length <= 0) return;
 
-        for (var i = 0; i < orders.length; i++) {
-            for (var j = 0; j < checkpointsData.length; j++) {
+        for (let i = 0; i < orders.length; i++) {
+            for (let j = 0; j < checkpointsData.length; j++) {
                 if (orders[i].tracking_number === checkpointsData[j].tracking_number) {
                     orders[i].status_text = checkpointsData[j].status_text;
                 }
@@ -55,12 +38,16 @@ const YourOrders = (props) => {
     }
 
     function OnClickOrder(trackingNumber) {
-        saveTrackingNumber(trackingNumber);
-        goToPage('/order-number');
+        if(saveTrackingNumber(trackingNumber)) {
+            goToPage('/order-number')
+        }
     }
 
     function saveTrackingNumber(trackingNumber) {
+        if (!trackingNumber) return false;
+
         props.setTrackingNumber(trackingNumber);
+        return true;
     }
 
     function goToPage(path) {
@@ -74,7 +61,8 @@ const YourOrders = (props) => {
                 orders.map((order, index) => (
 
                     <Button key={index}
-                            className={'order-button btn btn-secondary'}
+                            color='primary'
+                            className={'order-button'}
                             onClick={() => OnClickOrder(order.tracking_number)}
                     >
                         <div className={'order-button-row'}>
@@ -85,7 +73,7 @@ const YourOrders = (props) => {
                             <div className={'order-button-column'}>
                                 <div className={'heading'}>Current Status</div>
                                 <div
-                                    className={'content'}>{order.status_text ? order.status_text : 'Not Available'}</div>
+                                    className={'content'}>{order.status_text ? order.status_text : 'N/A'}</div>
                             </div>
                         </div>
                         <div className={'order-button-row'}>

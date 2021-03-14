@@ -63,7 +63,7 @@ const EnterEmail = (props) => {
             <div className={'user-input'}>{fieldName}: <Input type='email' onChange={({target: {value}}) => {
                 setEmail(value)
             }} value={email}/></div>
-            <Button color="primary" onClick={onClickNext}>SEND</Button>
+            <Button color='primary' onClick={onClickNext}>SEND</Button>
         </InputGroup>
     )
 

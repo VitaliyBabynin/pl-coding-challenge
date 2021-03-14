@@ -1,8 +1,8 @@
 @import "custom";
 
 html, .App, body {
-  background-color: black;
-  color: white;
+  //background-color: black;
+  //color: white;
 }
 
 .App {
@@ -11,7 +11,7 @@ html, .App, body {
     text-align: center;
 
     .App-logo {
-      height: 40vmin;
+      height: 20vmax;
       pointer-events: none;
     }
 
@@ -28,6 +28,7 @@ html, .App, body {
 
   .body-container {
     @include make-container();
+    padding-bottom: 100px;
 
     .body-row {
       @include make-row();
@@ -46,9 +47,10 @@ html, .App, body {
         padding: 1rem;
         height: fit-content;
         width: fit-content;
-        -moz-box-shadow: 0 0 0.5rem #ccc;
-        -webkit-box-shadow: 0 0 0.5rem #ccc;
-        box-shadow: 0 0 0.5rem #ccc;
+        $box-shadow: 0 0 0.5rem #ccc;
+        -moz-box-shadow: $box-shadow;
+        -webkit-box-shadow: $box-shadow;
+        box-shadow: $box-shadow;
         display: flex;
         flex-direction: column;
         max-width: 450px;
@@ -90,9 +92,10 @@ html, .App, body {
         .order-button {
           min-width: 300px;
           margin-bottom: 1rem;
-          -moz-box-shadow: 0 0 0.5rem #ccc;
-          -webkit-box-shadow: 0 0 0.5rem #ccc;
-          box-shadow: 0 0 0.5rem #ccc;
+          $box-shadow: 0 0.25rem 0.5rem #ccc;
+          -moz-box-shadow: $box-shadow;
+          -webkit-box-shadow: $box-shadow;
+          box-shadow: $box-shadow;
           padding: 0.5rem;
 
           .order-button-row {
@@ -119,6 +122,78 @@ html, .App, body {
 
         }
 
+      }
+
+      .order-number {
+
+        .order-number-row {
+          @include make-row();
+          margin-left: 0;
+          margin-right: 0;
+
+          .order-number-column {
+            @include make-col(12);
+            margin-bottom: 1rem;
+
+            .heading.articles {
+              margin-bottom: 0.5rem;
+            }
+
+            .content {
+              font-weight: bold;
+            }
+
+            &.order-number-button {
+              min-width: 300px;
+              margin-bottom: 1rem;
+              $box-shadow: 0 0.25rem 0.5rem #ccc;
+              -moz-box-shadow: $box-shadow;
+              -webkit-box-shadow: $box-shadow;
+              box-shadow: $box-shadow;
+              padding: 1rem;
+              border-radius: 0.5rem;
+            }
+
+          }
+
+          &.product {
+
+            .order-number-column {
+              padding: 0.25rem;
+
+              &.quantity {
+                @include make-col(2);
+                align-self: center;
+                text-align: center;
+              }
+
+              &.image {
+                @include make-col(3);
+
+                img {
+                  height: 100%;
+                  width: 100%;
+                }
+
+              }
+
+              &.details {
+                @include make-col(7);
+
+                .product-name {
+                  font-weight: bold;
+                }
+
+                .serial-number {
+
+                }
+
+              }
+            }
+
+          }
+
+        }
       }
 
     }

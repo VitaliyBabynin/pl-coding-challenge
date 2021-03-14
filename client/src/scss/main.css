@@ -9928,16 +9928,11 @@ h3 {
     border-color: #dee2e6;
   }
 }
-html, .App, body {
-  background-color: black;
-  color: white;
-}
-
 .App .App-header {
   text-align: center;
 }
 .App .App-header .App-logo {
-  height: 40vmin;
+  height: 20vmax;
   pointer-events: none;
 }
 .App .App-header .navigation {
@@ -9954,6 +9949,7 @@ html, .App, body {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  padding-bottom: 100px;
 }
 .App .body-container .body-row {
   display: flex;
@@ -10004,9 +10000,9 @@ html, .App, body {
 .App .body-container .body-row .your-orders .order-button {
   min-width: 300px;
   margin-bottom: 1rem;
-  -moz-box-shadow: 0 0 0.5rem #ccc;
-  -webkit-box-shadow: 0 0 0.5rem #ccc;
-  box-shadow: 0 0 0.5rem #ccc;
+  -moz-box-shadow: 0 0.25rem 0.5rem #ccc;
+  -webkit-box-shadow: 0 0.25rem 0.5rem #ccc;
+  box-shadow: 0 0.25rem 0.5rem #ccc;
   padding: 0.5rem;
 }
 .App .body-container .body-row .your-orders .order-button .order-button-row {
@@ -10024,6 +10020,58 @@ html, .App, body {
   max-width: 50%;
 }
 .App .body-container .body-row .your-orders .order-button .order-button-row .order-button-column .content {
+  font-weight: bold;
+}
+.App .body-container .body-row .order-number .order-number-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  margin-left: 0;
+  margin-right: 0;
+}
+.App .body-container .body-row .order-number .order-number-row .order-number-column {
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+}
+.App .body-container .body-row .order-number .order-number-row .order-number-column .heading.articles {
+  margin-bottom: 0.5rem;
+}
+.App .body-container .body-row .order-number .order-number-row .order-number-column .content {
+  font-weight: bold;
+}
+.App .body-container .body-row .order-number .order-number-row .order-number-column.order-number-button {
+  min-width: 300px;
+  margin-bottom: 1rem;
+  -moz-box-shadow: 0 0.25rem 0.5rem #ccc;
+  -webkit-box-shadow: 0 0.25rem 0.5rem #ccc;
+  box-shadow: 0 0.25rem 0.5rem #ccc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+.App .body-container .body-row .order-number .order-number-row.product .order-number-column {
+  padding: 0.25rem;
+}
+.App .body-container .body-row .order-number .order-number-row.product .order-number-column.quantity {
+  flex: 0 0 16.6666666667%;
+  max-width: 16.6666666667%;
+  align-self: center;
+  text-align: center;
+}
+.App .body-container .body-row .order-number .order-number-row.product .order-number-column.image {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+.App .body-container .body-row .order-number .order-number-row.product .order-number-column.image img {
+  height: 100%;
+  width: 100%;
+}
+.App .body-container .body-row .order-number .order-number-row.product .order-number-column.details {
+  flex: 0 0 58.3333333333%;
+  max-width: 58.3333333333%;
+}
+.App .body-container .body-row .order-number .order-number-row.product .order-number-column.details .product-name {
   font-weight: bold;
 }
 
