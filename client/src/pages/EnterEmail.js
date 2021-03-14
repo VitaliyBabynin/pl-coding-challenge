@@ -1,37 +1,25 @@
 import React, {useState} from "react";
 import {
     Button,
-    Card,
-    CardBody,
-    CardGroup,
-    Col,
-    Container,
     Input,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupText,
-    Row,
-    NavLink
+    InputGroup
 } from 'reactstrap';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useHistory
-} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
-const EnterEmail = ({data}) => {
+
+const EnterEmail = (props) => {
+    const trackingsData = props.apiData.trackings.data ? props.apiData.trackings.data : false;
+    const history = useHistory();
+    const fieldName = 'Email';
     const [email, setEmail] = useState('');
     const [warningMessage, setWarningMessage] = useState('');
-    const fieldName = 'Email';
-    const history = useHistory();
 
     const onClickNext = () => {
         if (!isEmailValid()) return;
         if (!doesEmailHaveOrders()) return;
 
-        routeChange(`/your-orders`)
+        saveEmail();
+        goToPage(`/your-orders`);
     };
 
     function isEmailValid() {
@@ -47,12 +35,10 @@ const EnterEmail = ({data}) => {
     }
 
     function doesEmailHaveOrders() {
-        const trackingsData = data.trackings.data ? data.trackings.data : false;
         if (!trackingsData) return false;
 
         for (var i = 0; i < trackingsData.length; i++) {
             if (trackingsData[i].email === email) {
-                console.log(trackingsData[i].orderNo);
                 return true;
             }
         }
@@ -61,7 +47,11 @@ const EnterEmail = ({data}) => {
         return false;
     }
 
-    function routeChange(path) {
+    function saveEmail() {
+        props.collectEmail(email);
+    }
+
+    function goToPage(path) {
         history.push(path);
     }
 

@@ -24,16 +24,20 @@ import {
 } from 'reactstrap';
 
 import EnterEmail from './pages/EnterEmail';
+import YourOrders from './pages/YourOrders';
+import OrderNumber from './pages/OrderNumber';
 
 const App = () => {
-    const defaultState = {
+    const defaultData = {
         apiResponse: '',
         checkpoints: {},
         trackings: {}
     };
+    const [data, setData] = useState(defaultData);
+    const [email, setEmail] = useState('');
+    const [orderNumber, setOrderNumber] = useState('');
 
-    const [data, setData] = useState(defaultState);
-
+    // Fetch Data from API
     useEffect(() => {
         fetch("http://localhost:9000/testAPI")
             .then(res => res.text())
@@ -41,40 +45,32 @@ const App = () => {
             .then(res => setData(res))
     }, []);
 
-    console.log(data);
-
     return (
         <Router>
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo"/>
                     <div className={'navigation'}>
-                        <NavLink>
                             <Link to={'/enter-email'}>Enter email</Link>
-                        </NavLink>
-                        <NavLink>
                             <Link to={'/your-orders'}>Your orders</Link>
-                        </NavLink>
-                        <NavLink>
                             <Link to={'/order-number'}>Order number</Link>
-                        </NavLink>
                     </div>
                 </header>
-                <body>
-                <div className={'body-row'}>
-                    <Switch>
-                        <Route path={'/enter-email'}>
-                            <EnterEmail data={data}></EnterEmail>
-                        </Route>
-                        <Route path={'/your-orders'}>
-                            <YourOrders data={data}></YourOrders>
-                        </Route>
-                        <Route path={'/order-number'}>
-                            <OrderNumber data={data}></OrderNumber>
-                        </Route>
-                    </Switch>
+                <div className={'body-container'}>
+                    <div className={'body-row'}>
+                        <Switch>
+                            <Route path={'/enter-email'}>
+                                <EnterEmail collectEmail={setEmail} apiData={data}/>
+                            </Route>
+                            <Route path={'/your-orders'}>
+                                <YourOrders email={email} setTrackingNumber={setOrderNumber} apiData={data}/>
+                            </Route>
+                            <Route path={'/order-number'}>
+                                <OrderNumber trackingNumber={orderNumber} apiData={data}/>
+                            </Route>
+                        </Switch>
+                    </div>
                 </div>
-                </body>
             </div>
         </Router>
     )
@@ -82,32 +78,3 @@ const App = () => {
 };
 
 export default App;
-
-
-const YourOrders = ({data}) => {
-    const trackingsData = data.trackings.data;
-    console.log(trackingsData);
-
-    return (
-        <div className={'your-orders'}>
-            {trackingsData ? (
-                trackingsData.map((order, index) => (
-                    <p key={index}>{order.orderNo}</p>
-                ))
-            ) : (<div>Loading...</div>)}
-            <pre>{JSON.stringify(data.trackings.data, null, 2)}</pre>
-        </div>
-    )
-
-};
-
-
-const OrderNumber = ({data}) => {
-
-    return (
-        <div className={'order-number'}>
-            <pre>{JSON.stringify(data.checkpoints.data, null, 2)}</pre>
-        </div>
-    )
-
-};

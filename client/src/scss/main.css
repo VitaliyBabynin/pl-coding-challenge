@@ -9928,6 +9928,11 @@ h3 {
     border-color: #dee2e6;
   }
 }
+html, .App, body {
+  background-color: black;
+  color: white;
+}
+
 .App .App-header {
   text-align: center;
 }
@@ -9939,18 +9944,18 @@ h3 {
   display: flex;
   justify-content: center;
 }
-.App .App-header .navigation .nav-link {
+.App .App-header .navigation a {
   display: flex;
-  color: red;
+  padding: 1rem;
 }
-.App body {
+.App .body-container {
   width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
-.App body .body-row {
+.App .body-container .body-row {
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
@@ -9959,12 +9964,14 @@ h3 {
   margin-left: 0;
   margin-right: 0;
 }
-.App body .body-row:first-child {
+.App .body-container .body-row:first-child {
   flex: 0 0 auto;
   width: auto;
   max-width: 100%;
 }
-.App body .body-row .email-form {
+.App .body-container .body-row .email-form,
+.App .body-container .body-row .your-orders,
+.App .body-container .body-row .order-number {
   border-radius: 1rem;
   padding: 1rem;
   height: fit-content;
@@ -9976,20 +9983,48 @@ h3 {
   flex-direction: column;
   max-width: 450px;
 }
-.App body .body-row .email-form .hint {
+.App .body-container .body-row .email-form .hint {
   margin-bottom: 1rem;
   font-style: italic;
 }
-.App body .body-row .email-form .warning {
+.App .body-container .body-row .email-form .warning {
   color: red;
 }
-.App body .body-row .email-form .user-input {
+.App .body-container .body-row .email-form .user-input {
   margin-top: 1rem;
   margin-bottom: 2rem;
 }
-.App body .body-row .email-form .btn {
+.App .body-container .body-row .email-form .btn {
   width: 10rem;
   align-self: center;
+}
+.App .body-container .body-row .your-orders .title {
+  margin-bottom: 1rem;
+}
+.App .body-container .body-row .your-orders .order-button {
+  min-width: 300px;
+  margin-bottom: 1rem;
+  -moz-box-shadow: 0 0 0.5rem #ccc;
+  -webkit-box-shadow: 0 0 0.5rem #ccc;
+  box-shadow: 0 0 0.5rem #ccc;
+  padding: 0.5rem;
+}
+.App .body-container .body-row .your-orders .order-button .order-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  justify-content: space-between;
+}
+.App .body-container .body-row .your-orders .order-button .order-button-row:first-child {
+  margin-bottom: 1rem;
+}
+.App .body-container .body-row .your-orders .order-button .order-button-row .order-button-column {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+.App .body-container .body-row .your-orders .order-button .order-button-row .order-button-column .content {
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=main.css.map */
